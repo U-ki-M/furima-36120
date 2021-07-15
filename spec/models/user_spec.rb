@@ -67,6 +67,18 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
+      it 'passwordとpassword_confirmationが不一致では登録できない' do
+        @user.password = 'abc123'
+        @user.password_confirmation = 'abc321'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'passwordとpassword_confirmationが全角では登録できない' do
+        @user.password = 'ａｂｃ１２３'
+        @user.password_confirmation = 'ａｂｃ１２３'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
       it '生年月日が空では登録できない' do
         @user.dob = ''
         @user.valid?
