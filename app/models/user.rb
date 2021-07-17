@@ -18,9 +18,9 @@ class User < ApplicationRecord
     with_options format: { with: /\A[ァ-ヶー]+\z/ } do
       validates :kana_surname
       validates :kana_first_name
-    end   
+    end
   end
-  
+
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX
 end

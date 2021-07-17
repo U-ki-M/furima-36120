@@ -77,7 +77,7 @@ RSpec.describe User, type: :model do
         @user.password = 'ａｂｃ１２３'
         @user.password_confirmation = 'ａｂｃ１２３'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is invalid")
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it '生年月日が空では登録できない' do
         @user.dob = ''
