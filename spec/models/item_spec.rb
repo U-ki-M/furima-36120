@@ -28,27 +28,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Description can't be blank")
       end
       it 'カテゴリーが空では投稿できない' do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it '状態が空では投稿できない' do
-        @item.condition_id = ''
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it '配送料の負担が空では投稿できない' do
-        @item.fee_by_id = ''
+        @item.fee_by_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee by can't be blank")
       end
       it '発送元の地域が空では投稿できない' do
-        @item.from_id = ''
+        @item.from_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("From can't be blank")
       end
       it '発送までの日数が空では投稿できない' do
-        @item.timeline_id = ''
+        @item.timeline_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Timeline can't be blank")
       end
@@ -69,6 +69,11 @@ RSpec.describe Item, type: :model do
       end
       it '価格が半角数字以外では投稿できない' do
         @item.price = '五百円'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+      it '価格が全角数字では投稿できない' do
+        @item.price = '５００'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price is not a number')
       end
