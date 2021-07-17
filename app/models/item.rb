@@ -2,16 +2,20 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one_attached :image
 
-  validates :image,        presence: true
-  validates :title,        presence: true
-  validates :description,  presence: true
-  validates :category_id,  numericality: { other_than: 1, message: "can't be blank" }
-  validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :fee_by_id,    numericality: { other_than: 1, message: "can't be blank" }
-  validates :from_id,      numericality: { other_than: 1, message: "can't be blank" }
-  validates :timeline_id,  numericality: { other_than: 1, message: "can't be blank" }
-  validates :price,        presence: true,
-                           numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  with_options presence: true do
+    validates :image
+    validates :title
+    validates :description
+    validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+  end
+
+  with_options numericality: { other_than: 1, message: "can't be blank" } do
+    validates :category_id
+    validates :condition_id
+    validates :fee_by_id
+    validates :from_id  
+    validates :timeline_id
+  end
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
