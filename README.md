@@ -24,7 +24,7 @@
 | Column       | Type       | Options                         |
 | ------------ | ---------- | ------------------------------- |
 | title        | string     | null: false                     |
-| text         | text       | null: false                     |
+| description  | text       | null: false                     |
 | category_id  | integer    | null: false                     |
 | condition_id | integer    | null: false                     |
 | fee_by_id    | integer    | null: false                     |
