@@ -13,7 +13,7 @@ class Item < ApplicationRecord
     validates :category_id
     validates :condition_id
     validates :fee_by_id
-    validates :from_id  
+    validates :from_id
     validates :timeline_id
   end
 
