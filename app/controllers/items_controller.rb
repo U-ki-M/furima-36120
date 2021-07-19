@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
     if item.save
       redirect_to root_path
     else
-      @item = Item.find(params[:id])
+      @item = item
       render :edit
     end
   end
