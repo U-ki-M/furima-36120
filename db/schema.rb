@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_16_025340) do
+ActiveRecord::Schema.define(version: 2021_07_22_055309) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,28 @@ ActiveRecord::Schema.define(version: 2021_07_16_025340) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "sales", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_sales_on_item_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
+  end
+
+  create_table "shipments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "postal", null: false
+    t.integer "from_id", null: false
+    t.string "city", null: false
+    t.string "street", null: false
+    t.string "bldg"
+    t.string "tel", null: false
+    t.bigint "sale_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sale_id"], name: "index_shipments_on_sale_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "surname", null: false
@@ -68,4 +90,7 @@ ActiveRecord::Schema.define(version: 2021_07_16_025340) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "items", "users"
+  add_foreign_key "sales", "items"
+  add_foreign_key "sales", "users"
+  add_foreign_key "shipments", "sales"
 end
