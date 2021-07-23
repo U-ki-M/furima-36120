@@ -4,14 +4,14 @@ class SaleShipment
 
   with_options presence: true do
     validates :postal, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+    validates :from_id, numericality: {other_than: 1, message: "can't be blank"}
     validates :city
     validates :street
     validates :tel, format: {with: /\A[0-9]{10,11}\z/}
     validates :user_id
     validates :item_id
-    
   end
-  validates :from_id, numericality: {other_than: 1, message: "can't be blank"}
+ 
 
   def save
     sale = Sale.create(item_id: item_id, user_id: user_id)
