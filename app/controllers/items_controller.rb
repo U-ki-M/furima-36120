@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update]
-  before_action :out_of_stock, only: [:edit]
+  before_action :out_of_stock, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')

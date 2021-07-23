@@ -1,8 +1,8 @@
 class SalesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :set_item, only: [:index, :create]
-  before_action :out_of_stock, only: [:index]
-  before_action :move_to_index, only: [:index]
+  before_action :out_of_stock, only: [:index, :create]
+  before_action :move_to_index, only: [:index, :create]
 
   def index
     @sale_shipment = SaleShipment.new
