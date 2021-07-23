@@ -73,6 +73,11 @@ RSpec.describe SaleShipment, type: :model do
         @sale_shipment.valid?
         expect(@sale_shipment.errors.full_messages).to include('Tel is invalid')
       end
+      it 'telが数字以外の半角英数字では保存できない' do
+        @sale_shipment.tel = '090abcdefgh'
+        @sale_shipment.valid?
+        expect(@sale_shipment.errors.full_messages).to include('Tel is invalid')
+      end
       it 'userが紐付いていないと保存できないこと' do
         @sale_shipment.user_id = nil
         @sale_shipment.valid?
