@@ -3,7 +3,6 @@ class ItemsController < ApplicationController
   before_action :move_to_index, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update]
   before_action :out_of_stock, only: [:edit]
-  
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -60,8 +59,6 @@ class ItemsController < ApplicationController
   end
 
   def out_of_stock
-    if @item.sale.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.sale.present?
   end
 end
