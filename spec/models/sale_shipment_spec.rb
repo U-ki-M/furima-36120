@@ -10,9 +10,6 @@ RSpec.describe SaleShipment, type: :model do
 
   describe '購入情報の保存' do
     context '内容に問題ない場合' do
-      it 'tokenがあれば保存ができること' do
-        expect(@sale_shipment).to be_valid
-      end
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@sale_shipment).to be_valid
       end
