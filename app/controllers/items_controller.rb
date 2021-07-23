@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, only: [:edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update]
+  before_action :out_of_stock, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -57,4 +58,7 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def out_of_stock
+    redirect_to root_path if @item.sale.present?
+  end
 end

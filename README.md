@@ -48,7 +48,7 @@
 
 ### Association
 
-- has_one :sale
+- has_one :shipment
 - belongs_to :item
 - belongs_to :user
 
