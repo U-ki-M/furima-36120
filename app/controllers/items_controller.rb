@@ -59,6 +59,7 @@ class ItemsController < ApplicationController
   end
 
   def out_of_stock
-    redirect_to root_path if @item.sale.present?
+    item = Item.find(params[:id])
+    redirect_to root_path if item.sale.present?
   end
 end
