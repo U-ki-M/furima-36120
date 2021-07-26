@@ -97,10 +97,15 @@
   text-align: center;
 }
 
-img{
+#image-preview img{
+  height: auto;
+  width: 90%;
+}
+/* img {
   width: 90%;
   height: auto;
 }
+*/
 
 /* /商品画像 */
 
